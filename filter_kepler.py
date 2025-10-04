@@ -7,8 +7,8 @@ print(f"Original dataset size: {len(df)} rows")
 print(f"koi_disposition value counts:")
 print(df['koi_disposition'].value_counts())
 
-# Drop rows where koi_disposition is CANDIDATE
-df_filtered = df[df['koi_disposition'] != 'CANDIDATE']
+# Drop rows where koi_disposition is confirmed
+df_filtered = df[df['koi_disposition'] == 'CONFIRMED'].copy()
 # drop koi_pdisposition column
 df_filtered = df_filtered.drop(columns=['koi_pdisposition'])
 df_filtered = df_filtered.drop(columns=['kepler_name'])
@@ -18,6 +18,6 @@ print(f"\nFiltered dataset size: {len(df_filtered)} rows")
 print(f"Rows removed: {len(df) - len(df_filtered)}")
 
 # Save to CSV
-output_file = 'Kepler Objects of Interest - Filtered.csv'
+output_file = 'Kepler Objects of Interest - confirmed.csv'
 df_filtered.to_csv(output_file, index=False)
 print(f"\nFiltered data saved to '{output_file}'")
